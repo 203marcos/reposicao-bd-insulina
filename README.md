@@ -7,13 +7,19 @@ descrição de cada caneta.
 ## Stack
 
 - Python 3.12, SQLAlchemy 2 e Alembic
-- PostgreSQL
+- PostgreSQL (via Docker Compose)
 
 ## Como rodar
 
-1. Suba um Postgres (o `docker-compose.yml` do monorepo do TCC já sobe um em
-   `localhost:5432`) e crie um banco dedicado, por exemplo `reposicao_insulina`.
-2. Copie `.env.example` para `.env` e ajuste `DATABASE_URL`.
+1. Suba o Postgres:
+
+   ```
+   docker compose up -d
+   ```
+
+   Sobe em `localhost:5434`, banco `reposicao_insulina` (ver `docker-compose.yml`).
+2. Copie `.env.example` para `.env` (os valores padrão já batem com o
+   `docker-compose.yml`).
 3. Instale as dependências:
 
    ```
