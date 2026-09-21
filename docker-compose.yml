@@ -1,0 +1,21 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: reposicao-insulina-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: reposicao
+      POSTGRES_PASSWORD: reposicao
+      POSTGRES_DB: reposicao_insulina
+    ports:
+      - "5434:5432"
+    volumes:
+      - reposicao-insulina-postgres-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U reposicao -d reposicao_insulina"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  reposicao-insulina-postgres-data:
